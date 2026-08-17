@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kriSandy ✌︎㋡ - KySpace</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Ad Banner -->
+  <div class="topbar">
+    <div class="ad-banner">
+      <div class="ad-arrow left">&#9664;</div>
+      <div class="ad-content">
+        <a href="#" class="ad-title">Comifuro 23 - Oct 31 | cf23 is coming backk~</a>
+        <p>ICE BSD City, Kabupaten Tangerang, Banten</p>
+        <a href="https://comifuro.net/" class="ad-link">https://comifuro.net/</a>
+      </div>
+      <div class="ad-arrow right">&#9654;</div>
+      <div class="ad-choices">AdChoices &#9656;</div>
+    </div>  
+
+    <!-- Search Bar -->
+    <div class="search-row">
+      <input type="text" class="search-input">
+      <select class="search-select">
+        <option>Web</option>
+      </select>
+      <button class="search-btn">Search</button>
+      <span class="google-powered">POWERED BY <strong>eerieieer</strong></span>
+    </div>
+
+    <!-- Nav Bar -->
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Mail &#9662;</a></li>
+        <li><a href="#">Profile &#9662;</a></li>
+        <li><a href="#">Friends &#9662;</a></li>
+        <li><a href="#">Music</a></li>
+        <li><a href="#">More &#9662;</a></li>
+      </ul>
+      <ul class="nav-right">
+        <li><a href="#">My Account</a></li>
+        <li><a href="#">Sign Out</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Welcome -->
+  <div class="gif-banner">
+    <img src="pics/welcometopage.gif.gif" alt="banner gif">
+  </div>
+
+  <!-- Audio Player -->
+  <audio id="audio-player" src="audio/bgm.mp3" preload="auto"></audio>
+
+    <div class="player-container">
+      <div class="control-wheel">
+        <button class="play-pause-btn" id="play-pause" title="Play/Pause">
+            <div class="icon-pause" id="pause-icon">
+                <span></span><span></span>
+            </div>
+            <div class="icon-play" id="play-icon"></div>
+        </button>
+    </div>
+
+        <div class="screen-section">
+            <h2 class="song-title">When The Moon's Reaching Out Stars</h2>
+            
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <div class="screen-footer">
+              <span id="current-time">0:00</span>
+              <div class="volume-wrap">
+                  <span class="vol-icon">&#128264;</span>
+                  <input type="range" id="volume" min="0" max="1" step="0.01" value="1" title="Volume">
+              </div>
+          </div>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('audio-player');
+        const playPauseBtn = document.getElementById('play-pause');
+        const pauseIcon = document.getElementById('pause-icon');
+        const playIcon = document.getElementById('play-icon');
+        const progressBar = document.getElementById('progress-bar');
+        const progressContainer = document.getElementById('progress-container');
+        const currentTimeEl = document.getElementById('current-time');
+        const volumeSlider = document.getElementById('volume');
+
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                pauseIcon.style.display = 'flex';
+                playIcon.style.display = 'none';
+            } else {
+                audio.pause();
+                pauseIcon.style.display = 'none';
+                playIcon.style.display = 'block';
+            }
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            const currentMinutes = Math.floor(audio.currentTime / 60);
+            let currentSeconds = Math.floor(audio.currentTime % 60);
+            if (currentSeconds < 10) currentSeconds = `0${currentSeconds}`;
+            currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`;
+
+            if(audio.duration) {
+                const progressPercent = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+            }
+        });
+
+        progressContainer.addEventListener('click', (e) => {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            audio.currentTime = (clickX / width) * duration;
+        });
+
+        function updateVolume() {
+        audio.volume = volumeSlider.value;
+        volumeSlider.style.setProperty('--fill', (volumeSlider.value * 100) + '%');
+      }
+
+      volumeSlider.addEventListener('input', updateVolume);
+      updateVolume();
+
+        function startMusic() {
+        audio.play().then(() => {
+          document.removeEventListener('click', startMusic);
+          document.removeEventListener('keydown', startMusic);
+          document.removeEventListener('touchstart', startMusic);
+        }).catch(() => {
+        });
+      }
+
+      startMusic();
+      document.addEventListener('click', startMusic);
+      document.addEventListener('keydown', startMusic);
+      document.addEventListener('touchstart', startMusic);
+    </script>
+
+    
+    
+  <!-- Page Body -->
+  <div class="page">
+
+    <h1 class="page-title">kriSandy ✌︎㋡</h1>
+
+    <div class="content-columns">
+
+      <!-- LEFT COLUMN -->
+      <div class="left-col">
+
+        <p class="tagline">I LOVE Pokemon ! XzXzxZ B)</p>
+        <p class="tagline">add me: @Krisandysan</p>
+  
+
+        <div class="profile-photo-row">
+          <div class="photo-box">
+            <img src="pics/makotopfp.jpg" alt="Profile photo">
+          </div>
+          ...
+
+
+          <div class="basic-info">
+            <p>Male</p>
+            <p>22 years old</p>
+            <p>Indonesia</p>
+            <p class="online-status">&#128994; <span>Online Now!</span></p>
+            <p class="last-login">Last Login: 06/12/2026</p>
+          </div>
+        </div>
+
+        <div class="view-my">
+          <p>View My:</p>
+          <a href="#">Pics</a> |
+          <a href="#">Videos</a>
+        </div>
+
+        <div class="box-header">My Mail</div>
+        <div class="mail-box">
+          <ul class="mail-list">
+            <li>&#9993; New Messages from <a href="#pm-win">kittyers_rine</a></li>
+            <li>&#9993; New Friend Requests!</li>
+            <li>&#9993; New Comments!</li>
+            <li>&#9993; New Picture Comments!</li>
+          </ul>
+          <table class="mail-links">
+            <tr>
+              <td><a href="#">inbox</a></td>
+              <td><a href="#">friend requests</a></td>
+            </tr>
+            <tr>
+              <td><a href="#">sent</a></td>
+              <td><a href="#">post bulletin</a></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="player-box">
+          <div class="player-controls">
+            <span class="loading-text"> 🎵 SHINee - Lucifer...</span>
+            <span class="eq">|||||||||</span>
+          </div>
+          <div class="player-add">
+            <span>APink - NoNoNo</span>
+            <span class="plus-btn">&#8862;</span>
+            <span class="note-btn">&#9834;</span>
+          </div>
+          <div class="player-add">
+            <span>SMASH - I Heart You</span>
+            <span class="row-play-btn">&#9654;</span>
+            <span class="note-btn">&#9834;</span>
+          </div>
+          <div class="player-add">
+            <span>CherryBelle - Love is You</span>
+            <span class="row-play-btn">&#9654;</span>
+            <span class="note-btn">&#9834;</span>
+          </div>
+          <div class="player-add">
+            <span>KANA-BOON - Silhouette</span>
+            <span class="row-play-btn">&#9654;</span>
+            <span class="note-btn">&#9834;</span>
+          </div>
+        </div>
+
+
+        <div class="box-header">kriSandy ✌︎㋡'s Details</div>
+        <table class="details-table">
+          <tr><td class="label">Status:</td><td>Student</td></tr>
+          <tr><td class="label">Here for:</td><td>Networking, Gameplay, Friends</td></tr>
+          <tr><td class="label">Zodiac Sign:</td><td>Sagittarius</a></td></tr>
+        </table>
+
+        <div class="ad-placeholder"></div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="right-col">
+
+      <!-- PHOTOBOOTH -->
+        <a href="https://p3.eerieieer.art" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+          <div style="display: inline-flex; text-align: center; justify-content: center; align-items: center; line-height: 100%; padding: 11px; font-size: 15px; font-style: normal; object-fit: contain; font-family: Arial; color: blue; border: 3px solid blue; text-shadow: blue 0px 5px 3px; background: white"><img src="https://autopoies.is/buttons/img/18.gif" style="max-height: 32px;">click here for fun photo!<img src="https://autopoies.is/buttons/img/18.gif" style="max-height: 32px;"></div>
+        </a>
+
+        <div class="blog-latest">
+          <strong>kriSandy ✌︎㋡'s Latest Blog Entry</strong>
+          [<a href="#">Subscribe to this Blog</a>]
+        </div>
+        
+        <div class="section-header">kriSandy ✌︎㋡'s Blog</div>
+        <div class="section-body">
+          <div class="home-body">
+
+            <div class="blog-post">
+              <a href="blog3.html" class="blog-title">followw ya</a>
+              <span class="blog-date">Mar 09, 2010</span>
+              <p>Another short preview goes here... <a href="blog3.html">(view more)</a></p>
+            </div>
+
+            <div class="blog-post">
+              <a href="blog1.html" class="blog-title">holiday~~</a>
+              <span class="blog-date">Dec 27, 2009</span>
+              <p>aku prgi ke luar negri... <a href="blog1.html">(view more)</a></p>
+            </div>
+
+            <div class="blog-post">
+              <a href="blog2.html" class="blog-title">berenang yukkk ¯\_(ツ)_/¯</a>
+              <span class="blog-date">Jul 12, 2009</span>
+              <p>Berenang sangat seru... <a href="blog2.html">(view more)</a></p>
+            </div>
+
+            
+
+
+            <div class="blog-footer">
+              [<a href="#">Subscribe to this Blog</a>] &nbsp; [<a href="#">View All Blog Entries</a>]
+            </div>
+          </div>
+
+</div>
+
+        <div class="section-header">kriSandy ✌︎㋡'s Blurbs</div>
+        <div class="section-body">
+          <p class="sub-header">About me:</p>
+          <p>i'm sandy krisandy.. i play Pokemon! let's be friends with me .. OwO i ❤ Comic. Anime. Game </p>
+
+
+          <p class="sub-header">Who I'd like to meet:</p>
+          <p>all of my new friends!</p>
+        </div>
+
+        <div class="section-header">kriSandy ✌︎㋡'s Media </div>
+            <div class="media-grid">
+              <a href="pics/image1.webp"><img src="pics/image1.webp" alt=""></a>
+              <a href="pics/image3.webp"><img src="pics/image3.webp" alt=""></a>
+              <a href="pics/image4.jpg"><img src="pics/image4.jpg" alt=""></a>
+              <a href="pics/image5.jpg"><img src="pics/image5.jpg" alt=""></a>
+              <a href="pics/image6.webp"><img src="pics/image6.webp" alt=""></a>
+              <a href="pics/image7.webp"><img src="pics/image7.webp" alt=""></a>
+              <a href="pics/image2.webp"><img src="pics/image2.webp" alt=""></a>
+              <a href="pics/image8.webp"><img src="pics/image8.webp" alt=""></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- MESSAGE -->       
+        <input type="checkbox" id="pm-min" class="pm-toggle-min">
+        <div class="pm-win" id="pm-win">
+          <div class="pm-bar">
+            <span>&#9993; kittyers_rine - Message</span>
+            <div class="pm-btns">
+              <label for="pm-min" class="pm-close" title="Minimize">&minus;</label>
+              <a href="#closed" class="pm-close" title="Close">&times;</a>
+            </div>
+          </div>
+
+          <div class="pm-head">
+            <img src="pics/pfp_rine.jpg" alt="">
+            <div>
+              <strong>kittyers_rine</strong>
+              <small>&#128994; Online Now!</small>
+            </div>
+          </div>
+
+          <div class="pm-msgs">
+            <div class="pm-row them">
+              <div class="pm-bubble">hey!! sandy sandyy</div>
+            </div>
+            <div class="pm-row them">
+              <div class="pm-bubble">happy britdayy (*^▽^*) !!</div>
+            </div>
+            <div class="pm-row them">
+              <div class="pm-bubble"><img src="pics/messageimg.webp" alt=""></div>
+            </div>
+            <div class="pm-row them">
+              <div class="pm-bubble">can i use this <a href="https://p3.eerieieer.art">cameraa?</a></div>
+            </div>
+            <div class="pm-row me">
+              <div class="pm-bubble">oooo.. yes yes okk</div>
+            </div>
+            <div class="pm-row me">
+              <div class="pm-bubble">soo cute :*</div>
+            </div>
+            <div class="pm-row me">
+              <div class="pm-bubble">tankhyouu ya..</div>
+            </div>
+            <div class="pm-row me">
+              <div class="pm-bubble">😁</div>
+            </div>
+          </div>
+
+          <div class="pm-compose">
+            <textarea rows="2" placeholder="Type a message"></textarea>
+            <button type="button" class="pm-send">Send</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
