@@ -995,7 +995,7 @@ rgb(143, 195, 230) 0%,rgb(12, 117, 216) 50%,rgb(0, 77, 192) 51%,rgb(2, 66, 139) 
       font-size: 10px;
     }
     .pm-msgs {
-      height: 140px;
+      height: 210px;
       padding: 6px;
       gap: 5px;
       resize: none;
@@ -1024,7 +1024,7 @@ rgb(143, 195, 230) 0%,rgb(12, 117, 216) 50%,rgb(0, 77, 192) 51%,rgb(2, 66, 139) 
       display: block;
     }
     .media-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
     .comment {
       flex-direction: column;
@@ -1040,11 +1040,40 @@ rgb(143, 195, 230) 0%,rgb(12, 117, 216) 50%,rgb(0, 77, 192) 51%,rgb(2, 66, 139) 
     .entry-gallery img {
       width: calc(50% - 4px);
     }
-    .img-left,
+    .img-left {
+      float: left;
+      margin: 4px 12px 8px 0;
+      max-width: 40%;
+    }
     .img-right {
-      float: none;
+      float: right; 
+      margin: 4px 0 8px 12px;
+      max-width: 40%;
+    }
+    .entry-body::after {
+      content: "";
       display: block;
-      margin: 8px auto;
+      clear: both;
+    }
+    .entry-body img {
       max-width: 100%;
+      height: auto;
+    }
+    
+    .entry-img {
+      margin: 12px 0;
+      text-align: center;
+    }
+    .entry-img img {
+      display: inline-block;
+      border: 1px solid #999;
+      padding: 3px;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .entry-img figcaption {
+      font-size: 11px;
+      color: #666;
+      margin-top: 4px;
     }
   }
