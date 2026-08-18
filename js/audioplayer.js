@@ -1,5 +1,7 @@
 console.log('audioplayer.js loaded');
 
+   
+
 const audio = document.getElementById('audio-player');
 const playPauseBtn = document.getElementById('play-pause');
 const pauseIcon = document.getElementById('pause-icon');
