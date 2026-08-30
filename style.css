@@ -68,6 +68,9 @@ rgb(104, 175, 241) 100%
   z-index: 9999;
   display: flex;
   align-items: center;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
   background: linear-gradient(to bottom,
     #f3f5f7 0%, #e2e5e9 50%, #c2c7ce 51%, #d5d9de 100%);
   border: 1px solid #a3a8b0;
@@ -79,6 +82,17 @@ rgb(104, 175, 241) 100%
     0 6px 14px rgba(0, 0, 0, 0.25);
   width: 240px;
 }
+
+.player-container.dragging {
+  cursor: grabbing;
+}
+
+.player-container button,
+.player-container input,
+.player-container .progress-container {
+  cursor: pointer;
+}
+
 .player-container::before {
   content: "";
   position: absolute;

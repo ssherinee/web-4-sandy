@@ -84,3 +84,51 @@ audio.play().catch(() => {
     audio.play().catch(() => {});
     events.forEach(ev => document.addEventListener(ev, unmute));
 });
+
+
+const player = document.querySelector('.player-container');
+let dragging = false;
+let offsetX = 0;
+let offsetY = 0;
+
+player.addEventListener('pointerdown', (e) => {
+    if (e.target.closest('button, input, .progress-container')) return;
+
+    const r = player.getBoundingClientRect();
+    offsetX = e.clientX - r.left;
+    offsetY = e.clientY - r.top;
+    dragging = true;
+
+    player.style.left = r.left + 'px';
+    player.style.top = r.top + 'px';
+    player.style.right = 'auto';
+
+    player.setPointerCapture(e.pointerId);
+    player.classList.add('dragging');
+});
+
+player.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const maxX = window.innerWidth - player.offsetWidth;
+    const maxY = window.innerHeight - player.offsetHeight;
+    const x = Math.min(Math.max(0, e.clientX - offsetX), maxX);
+    const y = Math.min(Math.max(0, e.clientY - offsetY), maxY);
+    player.style.left = x + 'px';
+    player.style.top = y + 'px';
+});
+
+function stopDrag() {
+    dragging = false;
+    player.classList.remove('dragging');
+}
+player.addEventListener('pointerup', stopDrag);
+player.addEventListener('pointercancel', stopDrag);
+
+
+window.addEventListener('resize', () => {
+    const r = player.getBoundingClientRect();
+    const maxX = Math.max(0, window.innerWidth - player.offsetWidth);
+    const maxY = Math.max(0, window.innerHeight - player.offsetHeight);
+    if (r.left > maxX) player.style.left = maxX + 'px';
+    if (r.top > maxY) player.style.top = maxY + 'px';
+});
