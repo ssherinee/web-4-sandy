@@ -292,12 +292,27 @@ rgb(143, 195, 230) 0%,rgb(12, 117, 216) 50%,rgb(0, 77, 192) 51%,rgb(2, 66, 139) 
 .song-title {
   font-size: 11px;
   font-weight: 600;
-  text-align: center;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
   margin: 0;
+}
+.song-title span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .song-title span {
+    animation: none;
+    padding-left: 0;
+  }
 }
 
 .progress-container {
